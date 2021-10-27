@@ -11,9 +11,13 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(Catch2)
 
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_BUILD_TYPE debug)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -Wcast-align -Wdisabled-optimization -Wformat=2 -Winit-self -Wmissing-declarations -Wmissing-include-dirs -Woverloaded-virtual -Wredundant-decls -Wsign-promo -Werror -Wno-unused -std=c++20")
+
 file(GLOB LIB_SOURCES "lib/*.cpp")
 add_library(tartar ${LIB_SOURCES})
-target_compile_options(tartar PUBLIC -pedantic -Wall -Wextra -Wcast-align -Wdisabled-optimization -Wformat=2 -Winit-self -Wmissing-declarations -Wmissing-include-dirs -Woverloaded-virtual -Wredundant-decls -Wsign-promo -Werror -Wno-unused -std=c++17)
 
 cmake_policy(PUSH)
   if(POLICY CMP0037)
@@ -23,8 +27,10 @@ cmake_policy(PUSH)
 file(GLOB TEST_SOURCES test/*.cpp)
 
 foreach (testsourcefile ${TEST_SOURCES})
+    
     add_executable("${testsourcefile}.out" "${testsourcefile}")
-    target_link_libraries("${testsourcefile}.out" PRIVATE Catch2::Catch2WithMain PUBLIC tartar )
+    
+    target_link_libraries("${testsourcefile}.out" PRIVATE Catch2::Catch2WithMain PUBLIC tartar)
 endforeach (testsourcefile ${TEST_SOURCES})
 
 cmake_policy(POP)
