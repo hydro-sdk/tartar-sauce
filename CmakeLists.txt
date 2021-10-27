@@ -1,0 +1,23 @@
+cmake_minimum_required(VERSION 2.8.9)
+project (tartar-sauce)
+
+Include(FetchContent)
+
+FetchContent_Declare(
+  Catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG        v3.0.0-preview3
+)
+
+FetchContent_MakeAvailable(Catch2)
+
+file(GLOB LIB_SOURCES "lib/*.cpp")
+add_library(tartar ${LIB_SOURCES})
+
+file(GLOB TEST_SOURCES test/*.cpp)
+
+foreach (testsourcefile ${TEST_SOURCES})
+    add_executable("${testsourcefile}.out" "${testsourcefile}")
+    target_link_libraries("${testsourcefile}.out" PRIVATE Catch2::Catch2WithMain PUBLIC tartar )
+endforeach (testsourcefile ${TEST_SOURCES})
+
