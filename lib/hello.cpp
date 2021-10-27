@@ -1,5 +1,3 @@
 #include <iostream>
 
-void hello(){
-    std::cout<<"Hello world";
-}
+void hello() { std::cout << "Hello world"; }

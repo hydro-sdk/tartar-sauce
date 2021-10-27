@@ -1,8 +1,8 @@
 
 namespace swid {
-    enum class NullabilitySuffix{
-        question,
-star,
-none,
-    };
+  enum class NullabilitySuffix {
+    question,
+    star,
+    none,
+  };
 }

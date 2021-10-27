@@ -1,7 +1,7 @@
 #include "functionType.hpp"
 
-swid::FunctionType::FunctionType(){}
+swid::FunctionType::FunctionType() {}
 
 swid::NullabilitySuffix swid::FunctionType::getNullabilitySuffix() {
-    return this->nullabilitySuffix;
+  return this->nullabilitySuffix;
 }
