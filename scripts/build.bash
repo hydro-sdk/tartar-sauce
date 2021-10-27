@@ -1,5 +1,5 @@
 
-[ -d "build"] || mkdir build
+[ -d "build" ] || mkdir build
 
 pushd build
 cmake -GNinja .. && ninja

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.9)
+cmake_minimum_required(VERSION 3.21.3)
 project (tartar-sauce)
 
 Include(FetchContent)
@@ -13,6 +13,12 @@ FetchContent_MakeAvailable(Catch2)
 
 file(GLOB LIB_SOURCES "lib/*.cpp")
 add_library(tartar ${LIB_SOURCES})
+target_compile_options(tartar PUBLIC -pedantic -Wall -Wextra -Wcast-align -Wdisabled-optimization -Wformat=2 -Winit-self -Wmissing-declarations -Wmissing-include-dirs -Woverloaded-virtual -Wredundant-decls -Wsign-promo -Werror -Wno-unused -std=c++17)
+
+cmake_policy(PUSH)
+  if(POLICY CMP0037)
+    cmake_policy(SET CMP0037 OLD)
+  endif()
 
 file(GLOB TEST_SOURCES test/*.cpp)
 
@@ -21,3 +27,4 @@ foreach (testsourcefile ${TEST_SOURCES})
     target_link_libraries("${testsourcefile}.out" PRIVATE Catch2::Catch2WithMain PUBLIC tartar )
 endforeach (testsourcefile ${TEST_SOURCES})
 
+cmake_policy(POP)
