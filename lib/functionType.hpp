@@ -1,5 +1,4 @@
 #include <concepts>
-#include <iostream>
 
 #include "nullabilitySuffix.hpp"
 
@@ -19,7 +18,3 @@ namespace swid {
     swid::NullabilitySuffix getNullabilitySuffix();
   };
 } // namespace swid
-
-template <class T>
-requires swid::FunctionTypeConcept<T>
-void print(T functionType) { functionType.getNullabilitySuffix(); }
