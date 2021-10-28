@@ -13,7 +13,7 @@ TEST_CASE("", "") {
       },
   });
 
-  std::wcout<<res.getOriginalPackagePath();
+  std::wcout << res.getOriginalPackagePath();
 
   REQUIRE(true == true);
 }
